@@ -116,7 +116,11 @@ public class FormularioTablita extends javax.swing.JFrame {
            DAOTablita.guardar(t);
            JOptionPane.showConfirmDialog(this, "Objeto Guardado");
            
+          textoNombre.setText(null);
+          textoSueldo.setText(null);
           
+     }catch(NumberFormatException e){
+         JOptionPane.showConfirmDialog(this, "No metiste un numero en sueldo");
            
         }catch(Exception e){
             System.out.println(e.getMessage());
