@@ -36,6 +36,11 @@ public class FormularioTablita extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         textoSueldo = new javax.swing.JTextField();
         botonGuardar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        textoId = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablita = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +72,7 @@ public class FormularioTablita extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textoSueldo, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,10 +87,58 @@ public class FormularioTablita extends javax.swing.JFrame {
                     .addComponent(textoSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(botonGuardar)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Guardar Tablita", jPanel1);
+
+        jLabel3.setText("Introduce un ID");
+
+        textoId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoIdActionPerformed(evt);
+            }
+        });
+
+        tablita.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Sueldo"
+            }
+        ));
+        jScrollPane1.setViewportView(tablita);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(textoId, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(textoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Buscar por id", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,6 +181,23 @@ public class FormularioTablita extends javax.swing.JFrame {
     
     }//GEN-LAST:event_botonGuardarActionPerformed
 
+    private void textoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoIdActionPerformed
+        // TODO add your handling code here:
+        //Manejammos aqui el Try catch
+        try{
+            
+            System.out.println(DAOTablita.buscarPorId(1).getSueldo()); 
+            Tablita t=DAOTablita.buscarPorId(Integer.parseInt(textoId.getText()));
+            tablita.setValueAt(t.getId(), 0, 0);
+            tablita.setValueAt(t.getNombre(), 0, 1);
+            tablita.setValueAt(t.getSueldo(), 0, 2);
+            
+            
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_textoIdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,8 +237,13 @@ public class FormularioTablita extends javax.swing.JFrame {
     private javax.swing.JButton botonGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tablita;
+    private javax.swing.JTextField textoId;
     private javax.swing.JTextField textoNombre;
     private javax.swing.JTextField textoSueldo;
     // End of variables declaration//GEN-END:variables
